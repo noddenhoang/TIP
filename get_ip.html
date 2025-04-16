@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lấy IP Public</title>
+</head>
+<body>
+  <h2>IP Public của bạn là:</h2>
+  <p id="ip"></p>
+
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('ip').innerText = data.ip;
+        console.log("IP Public:", data.ip);
+        // Gửi IP này về server nếu cần
+        // fetch('/api/send-ip', { method: 'POST', body: JSON.stringify({ ip: data.ip }) })
+      })
+      .catch(err => {
+        console.error("Không lấy được IP:", err);
+      });
+  </script>
+</body>
+</html>
